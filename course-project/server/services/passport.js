@@ -24,7 +24,8 @@ passport.use(
         {
             clientID: keys.googleClientID,
             clientSecret: keys.googleClientSecret,
-            callbackURL: '/auth/google/callback'
+            callbackURL: '/auth/google/callback',
+            proxy: true // to deal with heroku proxy issues
         },
         (accessToken, refreshToken, profile, done) => {
             User.findOne({ googleId: profile.id })

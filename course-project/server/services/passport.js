@@ -27,19 +27,17 @@ passport.use(
             callbackURL: '/auth/google/callback',
             proxy: true // to deal with heroku proxy issues
         },
-        (accessToken, refreshToken, profile, done) => {
-            User.findOne({ googleId: profile.id })
-            .then(existingUser => {
-                if (existingUser) {
-                    done(null, existingUser);   
-                } else {
-                    new User({ // creates our Mongoose Model Instance
-                        googleId: profile.id
-                    })
-                    .save() // save it to MongoDB as a new Record
-                    .then(user => done(null, user));
-                }
-            });
+
+        async (accessToken, refreshToken, profile, done) => {    
+            const existingUser = await User.findOne({ googleId: profile.id });
+            
+            if (existingUser) {
+                return done(null, existingUser);   
+            }
+            // creates our Mongoose Model Instance with new User and
+            // and saves it to MongoDB as a new Record
+            const user = await new User({ googleId: profile.id }).save();
+            done(null, user);
         }
     )
 );

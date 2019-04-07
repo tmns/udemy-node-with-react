@@ -4,7 +4,8 @@ const passport = require('passport');
 const cookieSession = require('cookie-session');
 const bodyParser = require('body-parser');
 
-require('./models/user');
+require('./models/User');
+require('./models/Survey');
 require('./services/passport');
 
 const keys = require('./config/keys');
@@ -28,6 +29,7 @@ app.use(passport.session());
 
 require('./routes/authRoutes')(app);
 require('./routes/billingRoutes')(app);
+require('./routes/surveyRoutes')(app);
 
 // make sure express handles routes in production correctly
 if (process.env.NODE_ENV == 'production') {

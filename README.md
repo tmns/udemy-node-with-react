@@ -20,3 +20,11 @@
 ...and much more!
 
 #### It's a great course and I highly recommend it!
+
+
+
+### Below is a screenshot of the project you build throughout the course. It's light on styling but absolutely packed with functionality!
+
+#### The React frontend dashboard can be seen in the background pulling surveys out of our MongoDB backend for display to the user. The modal is the integrated Stripe feature used to buy 'credits' for survey purchasing. The user has authn'd via Google OAuth.
+
+![](./screens/dashboard-add-credits.png)
